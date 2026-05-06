@@ -1,0 +1,15 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.universalSelector": "ignore",
+  "css.lint.zeroUnits": "ignore",
+  "css.lint.validProperties": ["composes"],
+  "css.lint.compatibleVendorPrefixes": "warning",
+  "css.validate": false,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.exclude": {
+    "node_modules": true,
+    ".git": true
+  }
+}
