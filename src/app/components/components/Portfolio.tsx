@@ -1,192 +1,124 @@
-import { useState } from 'react';
-
 const projects = [
   {
+    num: '01',
     title: 'Yummy Taste Application',
     subtitle: 'Mobile App Design',
     tag: 'UI/UX Design',
-    images: [
-      '/projects/yummy-taste1.png',
-      '/projects/yummy-taste2.png',
-      '/projects/yummy-taste3.png',
-      '/projects/yummy-taste4.png',
-    ],
+    img: '/projects/yummy-taste1.png',
+    year: '2024',
   },
   {
+    num: '02',
     title: 'Saraswati Academy',
     subtitle: 'Educational Website',
     tag: 'Web Design',
-    images: ['/projects/saraswati.png'],
+    img: '/projects/saraswati.png',
+    year: '2024',
   },
   {
+    num: '03',
     title: 'Instagram UI Clone',
     subtitle: 'Social Media Design',
     tag: 'UI Design',
-    images: ['/projects/instagram.png'],
+    img: '/projects/instagram.png',
+    year: '2023',
   },
   {
+    num: '04',
     title: 'Digital Sale Poster',
     subtitle: 'Graphic Design',
     tag: 'Graphic Design',
-    images: ['/projects/digital-sale.png'],
+    img: '/projects/digital-sale.png',
+    year: '2023',
   },
   {
+    num: '05',
     title: 'Experience Dubai',
     subtitle: 'Travel Poster',
     tag: 'Graphic Design',
-    images: ['/projects/dubai.png'],
+    img: '/projects/dubai.png',
+    year: '2023',
   },
   {
+    num: '06',
     title: 'Leo Business',
     subtitle: 'Digital Marketing',
     tag: 'Graphic Design',
-    images: ['/projects/leo.png'],
-  },
-  {
-    title: 'Paravomil Flyaer',
-    subtitle: 'Flyer Design',
-    tag: 'Graphic Design',
-    images: ['/projects/Paravomil Flyaer copy.jpg'],
-  },
-  {
-    title: 'All Identity Card',
-    subtitle: 'Graphic Design',
-    tag: 'Graphic Design',
-    images: ['/projects/All Identity Card.png'],
+    img: '/projects/leo.png',
+    year: '2023',
   },
 ];
 
 export function Portfolio() {
-  const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState<number | null>(null);
-
-  const prev = () => setCurrent((c) => (c - 1 + projects.length) % projects.length);
-  const next = () => setCurrent((c) => (c + 1) % projects.length);
-
-  const visible = [
-    projects[current % projects.length],
-    projects[(current + 1) % projects.length],
-    projects[(current + 2) % projects.length],
-  ];
-
   return (
-    <section id="portfolio" style={{ padding: '80px 24px', background: '#f9fafb' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="portfolio" className="portfolio-section">
+      <div className="portfolio-container">
 
-        {/* Header */}
-        <h2 style={{
-          fontSize: '3rem', fontWeight: 800, textAlign: 'center', marginBottom: '12px',
-          background: 'linear-gradient(90deg, #9333ea, #6366f1)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
-        }}>
-          Selected Work
-        </h2>
-        <p style={{ textAlign: 'center', color: '#6b7280', marginBottom: '48px', fontSize: '1.1rem' }}>
-          A collection of my recent projects and creative explorations
-        </p>
+        {/* ── Header ── */}
+        <div className="portfolio-header animate-fadeUp">
+          <p className="portfolio-eyebrow">Selected Works</p>
+          <div className="portfolio-header-row">
+            <h2 className="portfolio-heading">Projects</h2>
+            <p className="portfolio-subtitle">
+              A curated collection of design and development work spanning UI/UX, brand identity, and web experiences.
+            </p>
+          </div>
+        </div>
 
-        {/* Cards */}
-        <div style={{ position: 'relative' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            {visible.map((p, i) => (
-              <div
-                key={p.title + i}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  background: 'white',
-                  boxShadow: hovered === i
-                    ? '0 20px 40px rgba(124,58,237,0.2)'
-                    : '0 4px 15px rgba(0,0,0,0.08)',
-                  transform: hovered === i ? 'translateY(-8px)' : 'translateY(0)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                }}>
+        {/* ── Project List ── */}
+        <div className="project-list">
+          {projects.map((p, i) => (
+            <div
+              key={i}
+              className="project-row animate-fadeUp"
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              {/* Hover image preview */}
+              <div className="project-row-preview">
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="project-row-img"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      `https://placehold.co/480x300/f1f5f9/4f46e5?text=${encodeURIComponent(p.title)}`;
+                  }}
+                />
+              </div>
 
-                {/* Image Box */}
-                <div style={{ width: '100%', height: '220px', overflow: 'hidden', position: 'relative', background: '#f3f4f6' }}>
-                  <img
-                    src={p.images[0]}
-                    alt={p.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'top',
-                      transform: hovered === i ? 'scale(1.05)' : 'scale(1)',
-                      transition: 'transform 0.3s ease',
-                    }}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        `https://placehold.co/400x300/e9d5ff/7c3aed?text=${encodeURIComponent(p.title)}`;
-                    }}
-                  />
-                  {hovered === i && (
-                    <div style={{
-                      position: 'absolute', inset: 0,
-                      background: 'rgba(124,58,237,0.15)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                      <span style={{
-                        background: 'white', color: '#7c3aed',
-                        padding: '8px 20px', borderRadius: '999px',
-                        fontWeight: 600, fontSize: '14px'
-                      }}>
-                        View Project
-                      </span>
-                    </div>
-                  )}
+              <div className="project-row-inner">
+                <span className="project-row-num">{p.num}</span>
+
+                <div className="project-row-info">
+                  <h3 className="project-row-title">{p.title}</h3>
+                  <p className="project-row-sub">{p.subtitle}</p>
                 </div>
 
-                {/* Info */}
-                <div style={{ padding: '16px' }}>
-                  <h3 style={{ fontWeight: 700, fontSize: '1rem', color: '#1f2937', marginBottom: '4px' }}>{p.title}</h3>
-                  <p style={{ color: '#6b7280', fontSize: '0.85rem', marginBottom: '8px' }}>{p.subtitle}</p>
-                  <span style={{
-                    background: '#f3e8ff', color: '#7c3aed',
-                    padding: '4px 12px', borderRadius: '999px',
-                    fontSize: '12px', fontWeight: 500
-                  }}>
-                    {p.tag}
-                  </span>
+                <div className="project-row-meta">
+                  <span className="project-row-tag">{p.tag}</span>
+                  <span className="project-row-year">{p.year}</span>
+                </div>
+
+                <div className="project-row-arrow">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                  </svg>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Arrows */}
-          {['‹', '›'].map((arrow, idx) => (
-            <button key={arrow} onClick={idx === 0 ? prev : next}
-              style={{
-                position: 'absolute',
-                [idx === 0 ? 'left' : 'right']: '-20px',
-                top: '50%', transform: 'translateY(-50%)',
-                width: '44px', height: '44px', borderRadius: '50%',
-                background: 'white', border: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                fontSize: '24px', color: '#7c3aed',
-                cursor: 'pointer', zIndex: 10,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-              {arrow}
-            </button>
+            </div>
           ))}
         </div>
 
-        {/* Dots */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '32px' }}>
-          {projects.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)}
-              style={{
-                width: current === i ? '24px' : '8px',
-                height: '8px', borderRadius: '999px', border: 'none',
-                background: current === i ? '#7c3aed' : '#d1d5db',
-                cursor: 'pointer', transition: 'all 0.3s ease',
-              }} />
-          ))}
+        {/* ── Footer ── */}
+        <div className="portfolio-footer animate-fadeUp">
+          <button className="view-all-btn">
+            View All Projects
+            <svg className="view-all-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
+
       </div>
     </section>
   );
