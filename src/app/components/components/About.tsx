@@ -2,9 +2,9 @@ export function About() {
   const skills = [
     { label: 'UI/UX Design' },
     { label: 'Figma' },
-    { label: 'Adobe Illustrator' },
-    { label: 'Photoshop' },
-    { label: 'Web Development' },
+    { label: 'Adobe Suite' },
+    { label: 'AI Design Tools' },
+    { label: 'Frontend Dev' },
     { label: 'React & JS' },
   ];
 
@@ -41,16 +41,13 @@ export function About() {
 
             <div className="about-body-block">
               <p className="about-body">
-                Hi, I'm <strong>Kishan Darji</strong> — a UI/UX Designer and Creative Developer who
-                sits at the intersection of <em>visual storytelling</em> and
-                <em> engineering rigour</em>. I craft digital products that don't just
-                look exceptional — they <em>perform flawlessly</em>.
+                Hi, I'm <strong>Kishan Darji</strong> — a <em>UI/UX Designer and Creative Designer</em> passionate about transforming ideas into meaningful digital experiences. I believe exceptional design goes beyond aesthetics—it's about solving real problems and creating intuitive interactions.
               </p>
               <p className="about-body">
-                From the first user-research session to the final line of deployed
-                code, I bring the same obsessive attention to detail at every stage.
-                My goal is simple: to create interfaces that feel so intuitive,
-                users never have to think twice.
+                From mobile app interfaces to compelling brand identities, I create solutions that are clean, purposeful, and memorable, combining user-centered thinking with modern design principles.
+              </p>
+              <p className="about-body">
+                I also leverage <em>AI-powered creative tools</em> to enhance my workflow. By combining AI with human creativity, I produce high-quality results efficiently while maintaining originality and strategic intent.
               </p>
             </div>
 
@@ -69,27 +66,7 @@ export function About() {
           </div>
         </div>
 
-        {/* ── PROFESSIONAL STATS ROW ── */}
-        <div className="animate-fadeUp" style={{ marginTop: '5.5rem', animationDelay: '0.3s' }}>
-          <div className="about-stats">
-            <div className="stat-item">
-              <span className="stat-value">1+</span>
-              <span className="stat-label">Years Experience</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value">20+</span>
-              <span className="stat-label">Projects Delivered</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value">15+</span>
-              <span className="stat-label">Happy Clients</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value">100%</span>
-              <span className="stat-label">Job Success</span>
-            </div>
-          </div>
-        </div>
+
 
         {/* ── SERVICES / EXPERTISE ROW ── */}
         <div className="about-services animate-fadeUp" style={{ marginTop: '5.5rem', animationDelay: '0.4s' }}>
@@ -119,6 +96,15 @@ export function About() {
               <div className="service-body">
                 <span className="service-title">Brand Identity &amp; Graphics</span>
                 <span className="service-desc">Designing memorable brand identities, modern logos, and aesthetic graphics that resonate with target audiences and elevate the market presence of businesses.</span>
+              </div>
+              <span className="service-arrow">→</span>
+            </div>
+
+            <div className="service-row">
+              <span className="service-num">04</span>
+              <div className="service-body">
+                <span className="service-title">AI-Assisted Design Workflow</span>
+                <span className="service-desc">Leveraging AI tools like Midjourney, ChatGPT, and Adobe Firefly to enhance creative workflows, accelerate ideation, and produce original, high-quality visual concepts.</span>
               </div>
               <span className="service-arrow">→</span>
             </div>

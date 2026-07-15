@@ -1,5 +1,6 @@
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Tools } from './components/Tools';
 import { Portfolio } from './components/Portfolio';
 import { Contact } from './components/Contact';
 import { useEffect, useRef } from 'react';
@@ -142,7 +143,9 @@ function MagicPhoto() {
           justifyContent: 'flex-end',
           padding: '2.5rem 2rem',
           opacity: 0,
-          willChange: 'opacity'
+          willChange: 'opacity',
+          transform: 'rotateY(180deg)',
+          backfaceVisibility: 'hidden'
         }}
       >
         <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: '1.25rem' }}>Design. Code. Deliver.</p>
@@ -178,6 +181,7 @@ export default function App() {
       <MagicPhoto />
       <Hero />
       <About />
+      <Tools />
       <Portfolio />
       <Contact />
     </div>
