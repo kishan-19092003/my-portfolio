@@ -1,148 +1,79 @@
 export function Contact() {
-
-  // ✅ અહીં તમારા પોતાના usernames નાખો
-  const socialLinks = [
-    { name: 'Instagram', url: 'https://www.instagram.com/kishan__1909/' },
-    { name: 'Behance',   url: 'https://behance.net/kishandarji' },
-    { name: 'LinkedIn',  url: 'https://www.linkedin.com/in/kishan-darji-4168852a0' },
-    { name: 'Dribbble',  url: 'https://dribbble.com/kishandarji' },
-  ];
-
   return (
-    <section
-      id="contact"
-      style={{
-        padding: '6rem 1.5rem',
-        background: 'linear-gradient(135deg, #3b0764 0%, #4c1d95 50%, #312e81 100%)',
-        boxSizing: 'border-box',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '640px',
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        {/* Heading */}
-        <h2
-          style={{
-            margin: '0 0 1rem 0',
-            padding: 0,
-            fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
-            fontWeight: 700,
-            color: '#ffffff',
-            lineHeight: 1.2,
-          }}
-        >
-          Let's Work Together
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
+
+        {/* ── Top Label ── */}
+        <p className="contact-eyebrow animate-fadeUp">Get In Touch</p>
+
+        {/* ── Heading ── */}
+        <h2 className="contact-heading animate-fadeUp" style={{ animationDelay: '0.1s' }}>
+          Let's build something<br />
+          <span className="contact-heading-accent">remarkable together.</span>
         </h2>
 
-        {/* Subtitle */}
-        <p
-          style={{
-            margin: '0 0 3rem 0',
-            fontSize: '1.1rem',
-            color: '#d8b4fe',
-            lineHeight: 1.6,
-          }}
-        >
-          Have a project in mind? I'd love to hear about it.
+        {/* ── Subtitle ── */}
+        <p className="contact-subtitle animate-fadeUp" style={{ animationDelay: '0.2s' }}>
+          I'm open to freelance projects, full-time roles, and creative collaborations.
+          If you have a vision, I have the skills to bring it to life.
         </p>
 
-        {/* Buttons */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            justifyContent: 'center',
-            marginBottom: '3rem',
-          }}
-        >
+        {/* ── Buttons ── */}
+        <div className="contact-buttons animate-fadeUp" style={{ animationDelay: '0.3s' }}>
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=kishandarji03@gmail.com"
             target="_blank"
             rel="noreferrer"
-            style={{
-              padding: '0.85rem 2rem',
-              borderRadius: '9999px',
-              background: 'linear-gradient(90deg, #7c3aed, #6366f1)',
-              color: '#fff',
-              fontWeight: 600,
-              fontSize: '1rem',
-              textDecoration: 'none',
-              boxShadow: '0 6px 24px rgba(124,58,237,0.4)',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-              display: 'inline-block',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.06)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)';
-            }}
+            className="btn-primary"
           >
-            Email Me
+            Say Hello
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
-
-          <a
-            href="/resume.pdf"
-            download
-            style={{
-              padding: '0.85rem 2rem',
-              borderRadius: '9999px',
-              background: 'transparent',
-              color: '#fff',
-              fontWeight: 600,
-              fontSize: '1rem',
-              textDecoration: 'none',
-              border: '2px solid rgba(255,255,255,0.8)',
-              transition: 'background 0.2s, color 0.2s',
-              display: 'inline-block',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = '#fff';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#4c1d95';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-              (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-            }}
-          >
+          <a href="/resume.pdf" download className="btn-secondary">
             Download Resume
           </a>
         </div>
 
-        {/* ✅ Social Links — હવે real links સાથે નવી tab માં ખુલશે */}
-        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {socialLinks.map((s) => (
-            <a
-              key={s.name}
-              href={s.url}
-              target="_blank"        // ← નવી tab માં ખુલશે
-              rel="noopener noreferrer"
-              style={{
-                color: '#d8b4fe',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                fontWeight: 500,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLAnchorElement).style.color = '#d8b4fe';
-              }}
-            >
-              {s.name}
-            </a>
-          ))}
+        {/* ── Divider ── */}
+        <div className="contact-divider animate-fadeUp" style={{ animationDelay: '0.4s' }} />
+
+        {/* ── Social Icons (Instagram + LinkedIn only) ── */}
+        <div className="social-links animate-fadeUp" style={{ animationDelay: '0.5s' }}>
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/kishan__1909/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon-link"
+            aria-label="Instagram"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/kishan-darji-4168852a0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon-link"
+            aria-label="LinkedIn"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
         </div>
+
+        {/* ── Copyright ── */}
+        <p className="contact-copyright animate-fadeUp" style={{ animationDelay: '0.6s' }}>
+          © {new Date().getFullYear()} Kishan Darji. All rights reserved.
+        </p>
+
       </div>
     </section>
   );

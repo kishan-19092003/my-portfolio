@@ -1,192 +1,294 @@
-import { useState } from 'react';
+import React from 'react';
 
 const projects = [
   {
+    num: '01',
     title: 'Yummy Taste Application',
     subtitle: 'Mobile App Design',
     tag: 'UI/UX Design',
-    images: [
-      '/projects/yummy-taste1.png',
-      '/projects/yummy-taste2.png',
-      '/projects/yummy-taste3.png',
-      '/projects/yummy-taste4.png',
-    ],
+    img: '/projects/yummy-taste1.png',
+    year: '2024',
   },
   {
+    num: '02',
     title: 'Saraswati Academy',
     subtitle: 'Educational Website',
     tag: 'Web Design',
-    images: ['/projects/saraswati.png'],
+    img: '/projects/saraswati.png',
+    year: '2024',
   },
   {
+    num: '03',
     title: 'Instagram UI Clone',
     subtitle: 'Social Media Design',
     tag: 'UI Design',
-    images: ['/projects/instagram.png'],
+    img: '/projects/instagram.png',
+    year: '2023',
   },
   {
+    num: '04',
     title: 'Digital Sale Poster',
     subtitle: 'Graphic Design',
     tag: 'Graphic Design',
-    images: ['/projects/digital-sale.png'],
+    img: '/projects/digital-sale.png',
+    year: '2023',
   },
   {
+    num: '05',
     title: 'Experience Dubai',
     subtitle: 'Travel Poster',
     tag: 'Graphic Design',
-    images: ['/projects/dubai.png'],
+    img: '/projects/dubai.png',
+    year: '2023',
   },
   {
+    num: '06',
     title: 'Leo Business',
     subtitle: 'Digital Marketing',
     tag: 'Graphic Design',
-    images: ['/projects/leo.png'],
-  },
-  {
-    title: 'Paravomil Flyaer',
-    subtitle: 'Flyer Design',
-    tag: 'Graphic Design',
-    images: ['/projects/Paravomil Flyaer copy.jpg'],
-  },
-  {
-    title: 'All Identity Card',
-    subtitle: 'Graphic Design',
-    tag: 'Graphic Design',
-    images: ['/projects/All Identity Card.png'],
+    img: '/projects/leo.png',
+    year: '2023',
   },
 ];
 
 export function Portfolio() {
-  const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState<number | null>(null);
-
-  const prev = () => setCurrent((c) => (c - 1 + projects.length) % projects.length);
-  const next = () => setCurrent((c) => (c + 1) % projects.length);
-
-  const visible = [
-    projects[current % projects.length],
-    projects[(current + 1) % projects.length],
-    projects[(current + 2) % projects.length],
-  ];
-
   return (
-    <section id="portfolio" style={{ padding: '80px 24px', background: '#f9fafb' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+    <section id="portfolio" className="portfolio-section">
+      <style>{`
+        .portfolio-section {
+          background-color: #fdfcf8; /* Premium warm cream color */
+          padding: 8rem 5%;
+          position: relative;
+          color: #0f172a;
+        }
 
+        @media (max-width: 768px) {
+          .portfolio-section {
+            padding: 4rem 1.5rem;
+          }
+        }
+
+        .portfolio-container {
+          max-width: 1300px;
+          margin: 0 auto;
+        }
+
+        .portfolio-header {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-bottom: 5rem;
+        }
+
+        @media (max-width: 768px) {
+          .portfolio-header {
+            margin-bottom: 3rem;
+          }
+        }
+
+        .portfolio-eyebrow {
+          color: #6366f1;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .portfolio-huge-text {
+          font-size: clamp(2.5rem, 6vw, 5rem);
+          font-weight: 900;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+          margin-bottom: 1.5rem;
+          color: #0f172a;
+        }
+
+        .portfolio-desc {
+          font-size: 1.15rem;
+          color: #475569;
+          line-height: 1.6;
+          max-width: 600px;
+        }
+
+        /* Editorial Style Grid */
+        .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 5rem 3rem; /* Huge images, generous spacing */
+          grid-auto-flow: dense;
+        }
+
+        @media (max-width: 768px) {
+          .portfolio-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+          }
+        }
+
+        .portfolio-card {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          cursor: pointer;
+        }
+
+        /* Make 1st and 6th projects featured (full width) */
+        .portfolio-card.featured {
+          grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+          .portfolio-card.featured {
+            grid-column: span 1;
+          }
+        }
+
+        .portfolio-image-wrapper {
+          width: 100%;
+          aspect-ratio: 1/1;
+          border-radius: 20px;
+          overflow: hidden;
+          background: #f1f5f9;
+          position: relative;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+          transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        /* Featured images are wider */
+        .portfolio-card.featured .portfolio-image-wrapper {
+          aspect-ratio: 21/9;
+        }
+        
+        @media (max-width: 1024px) {
+          .portfolio-card.featured .portfolio-image-wrapper {
+            aspect-ratio: 16/9;
+          }
+        }
+
+        .portfolio-card:hover .portfolio-image-wrapper {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
+
+        .portfolio-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portfolio-card:hover .portfolio-img {
+          transform: scale(1.04);
+        }
+
+        /* Overlay gradient for a premium touch on hover */
+        .portfolio-img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(15,23,42,0.3), transparent);
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-img-overlay {
+          opacity: 1;
+        }
+
+        .portfolio-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          padding: 0 0.5rem;
+        }
+
+        .portfolio-title {
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: #0f172a;
+          letter-spacing: -0.01em;
+          transition: color 0.3s ease;
+        }
+        
+        /* Larger title for featured cards */
+        .portfolio-card.featured .portfolio-title {
+          font-size: 2rem;
+        }
+
+        .portfolio-card:hover .portfolio-title {
+          color: #6366f1;
+        }
+
+        .portfolio-meta {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          color: #64748b;
+          font-size: 1.05rem;
+          font-weight: 500;
+        }
+
+        .portfolio-meta-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: #cbd5e1;
+        }
+
+        .portfolio-meta-tag {
+          color: #475569;
+          font-weight: 600;
+        }
+      `}</style>
+
+      <div className="portfolio-container">
+        
         {/* Header */}
-        <h2 style={{
-          fontSize: '3rem', fontWeight: 800, textAlign: 'center', marginBottom: '12px',
-          background: 'linear-gradient(90deg, #9333ea, #6366f1)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
-        }}>
-          Selected Work
-        </h2>
-        <p style={{ textAlign: 'center', color: '#6b7280', marginBottom: '48px', fontSize: '1.1rem' }}>
-          A collection of my recent projects and creative explorations
-        </p>
+        <div className="portfolio-header animate-fadeUp">
+          <p className="portfolio-eyebrow">Selected Works</p>
+          <h2 className="portfolio-huge-text">Projects.</h2>
+          <p className="portfolio-desc">
+            A curated collection of design and development work spanning UI/UX, brand identity, and web experiences.
+          </p>
+        </div>
 
-        {/* Cards */}
-        <div style={{ position: 'relative' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            {visible.map((p, i) => (
-              <div
-                key={p.title + i}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  background: 'white',
-                  boxShadow: hovered === i
-                    ? '0 20px 40px rgba(124,58,237,0.2)'
-                    : '0 4px 15px rgba(0,0,0,0.08)',
-                  transform: hovered === i ? 'translateY(-8px)' : 'translateY(0)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                }}>
-
-                {/* Image Box */}
-                <div style={{ width: '100%', height: '220px', overflow: 'hidden', position: 'relative', background: '#f3f4f6' }}>
-                  <img
-                    src={p.images[0]}
-                    alt={p.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'top',
-                      transform: hovered === i ? 'scale(1.05)' : 'scale(1)',
-                      transition: 'transform 0.3s ease',
-                    }}
+        {/* Editorial Style Grid */}
+        <div className="portfolio-grid">
+          {projects.map((p, i) => {
+            // Intelligent Editorial Layout: Wide projects (Web/Banners) are featured (span 2), Mobile/Posters are square (span 1)
+            const isFeatured = i === 1 || i === 5;
+            
+            return (
+              <div 
+                key={i} 
+                className={"portfolio-card animate-fadeUp " + (isFeatured ? "featured" : "")}
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
+                <div className="portfolio-image-wrapper">
+                  <img 
+                    src={p.img} 
+                    alt={p.title} 
+                    className="portfolio-img"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        `https://placehold.co/400x300/e9d5ff/7c3aed?text=${encodeURIComponent(p.title)}`;
+                      (e.target as HTMLImageElement).src = "https://placehold.co/1200x800/f1f5f9/64748b?text=" + encodeURIComponent(p.title);
                     }}
                   />
-                  {hovered === i && (
-                    <div style={{
-                      position: 'absolute', inset: 0,
-                      background: 'rgba(124,58,237,0.15)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                      <span style={{
-                        background: 'white', color: '#7c3aed',
-                        padding: '8px 20px', borderRadius: '999px',
-                        fontWeight: 600, fontSize: '14px'
-                      }}>
-                        View Project
-                      </span>
-                    </div>
-                  )}
+                  <div className="portfolio-img-overlay"></div>
                 </div>
-
-                {/* Info */}
-                <div style={{ padding: '16px' }}>
-                  <h3 style={{ fontWeight: 700, fontSize: '1rem', color: '#1f2937', marginBottom: '4px' }}>{p.title}</h3>
-                  <p style={{ color: '#6b7280', fontSize: '0.85rem', marginBottom: '8px' }}>{p.subtitle}</p>
-                  <span style={{
-                    background: '#f3e8ff', color: '#7c3aed',
-                    padding: '4px 12px', borderRadius: '999px',
-                    fontSize: '12px', fontWeight: 500
-                  }}>
-                    {p.tag}
-                  </span>
+                <div className="portfolio-info">
+                  <h3 className="portfolio-title">{p.title}</h3>
+                  <div className="portfolio-meta">
+                    <span className="portfolio-meta-tag">{p.tag}</span>
+                    <span className="portfolio-meta-dot"></span>
+                    <span>{p.subtitle}</span>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Arrows */}
-          {['‹', '›'].map((arrow, idx) => (
-            <button key={arrow} onClick={idx === 0 ? prev : next}
-              style={{
-                position: 'absolute',
-                [idx === 0 ? 'left' : 'right']: '-20px',
-                top: '50%', transform: 'translateY(-50%)',
-                width: '44px', height: '44px', borderRadius: '50%',
-                background: 'white', border: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                fontSize: '24px', color: '#7c3aed',
-                cursor: 'pointer', zIndex: 10,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-              {arrow}
-            </button>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Dots */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '32px' }}>
-          {projects.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)}
-              style={{
-                width: current === i ? '24px' : '8px',
-                height: '8px', borderRadius: '999px', border: 'none',
-                background: current === i ? '#7c3aed' : '#d1d5db',
-                cursor: 'pointer', transition: 'all 0.3s ease',
-              }} />
-          ))}
-        </div>
       </div>
     </section>
   );
